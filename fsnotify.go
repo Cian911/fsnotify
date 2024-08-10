@@ -198,6 +198,12 @@ const (
 	// indexing on macOS, anti-virus software, backup software, etc.
 	Chmod
 
+	// A watched file or a file within a watched directory was closed, after being opened in writeable mode. This does not necessarily imply the file was written to.
+	CloseWrite
+
+	// A watched file or a file within a watched directory was closed, after being opened in read-only mode.
+	CloseNoWrite
+
 	// File descriptor was opened.
 	//
 	// Only works on Linux and FreeBSD.
@@ -365,6 +371,12 @@ func (o Op) String() string {
 	}
 	if o.Has(xUnportableCloseWrite) {
 		b.WriteString("|CLOSE_WRITE")
+	}
+	if o.Has(CloseWrite) {
+		b.WriteString("|CLOSE_WRITE")
+	}
+	if o.Has(CloseNoWrite) {
+		b.WriteString("|CLOSE_NO_WRITE")
 	}
 	if o.Has(xUnportableCloseRead) {
 		b.WriteString("|CLOSE_READ")
