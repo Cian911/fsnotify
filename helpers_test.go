@@ -556,13 +556,13 @@ func newEvents(t *testing.T, s string) Events {
 			case "CHMOD":
 				op |= Chmod
 			case "OPEN":
-				op |= xUnportableOpen
+				op |= UnportableOpen
 			case "READ":
-				op |= xUnportableRead
+				op |= UnportableRead
 			case "CLOSE_WRITE":
 				op |= UnportableCloseWrite
 			case "CLOSE_READ":
-				op |= xUnportableCloseRead
+				op |= UnportableCloseRead
 			default:
 				t.Fatalf("newEvents: line %d has unknown event %q: %s", no+1, ee, line)
 			}
@@ -893,13 +893,13 @@ loop:
 				case "chmod":
 					op |= Chmod
 				case "open":
-					op |= xUnportableOpen
+					op |= UnportableOpen
 				case "read":
-					op |= xUnportableRead
+					op |= UnportableRead
 				case "close_write":
 					op |= UnportableCloseWrite
 				case "close_read":
-					op |= xUnportableCloseRead
+					op |= UnportableCloseRead
 				}
 			}
 			do = append(do, func() {
