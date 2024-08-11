@@ -658,7 +658,7 @@ func supportsFilter(t *testing.T) {
 	case "linux":
 		// Run test.
 	default:
-		t.Skip("withOps() not yet supported on " + runtime.GOOS)
+		t.Skip("WithOps() not yet supported on " + runtime.GOOS)
 	}
 }
 
@@ -771,7 +771,7 @@ func parseScript(t *testing.T, in string) {
 loop:
 	for _, c := range cmds {
 		c := c
-		//fmt.Printf("line %d: %q  %q\n", c.line, c.cmd, c.args)
+		// fmt.Printf("line %d: %q  %q\n", c.line, c.cmd, c.args)
 		switch c.cmd {
 		case "skip", "require":
 			mustArg(c, 1)
@@ -840,7 +840,7 @@ loop:
 			default:
 				t.Fatalf("line %d: unknown %s reason: %q", c.line, c.cmd, c.args[0])
 			}
-		//case "state":
+		// case "state":
 		//	mustArg(c, 0)
 		//	do = append(do, func() { eventSeparator(); fmt.Fprintln(os.Stderr); w.w.state(); fmt.Fprintln(os.Stderr) })
 		case "debug":
@@ -904,7 +904,7 @@ loop:
 			}
 			do = append(do, func() {
 				p := tmppath(tmp, c.args[0])
-				err := w.w.AddWith(p, withOps(op), follow)
+				err := w.w.AddWith(p, WithOps(op), follow)
 				if err != nil {
 					t.Fatalf("line %d: addWatch(%q): %s", c.line+1, p, err)
 				}
