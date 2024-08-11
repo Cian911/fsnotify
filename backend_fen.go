@@ -14,8 +14,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/fsnotify/fsnotify/internal"
 	"golang.org/x/sys/unix"
+
+	"github.com/fsnotify/fsnotify/internal"
 )
 
 type fen struct {
@@ -477,7 +478,7 @@ func (w *fen) WatchList() []string {
 
 func (w *fen) xSupports(op Op) bool {
 	if op.Has(xUnportableOpen) || op.Has(xUnportableRead) ||
-		op.Has(xUnportableCloseWrite) || op.Has(xUnportableCloseRead) {
+		op.Has(UnportableCloseWrite) || op.Has(xUnportableCloseRead) {
 		return false
 	}
 	return true

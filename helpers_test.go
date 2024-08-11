@@ -560,7 +560,7 @@ func newEvents(t *testing.T, s string) Events {
 			case "READ":
 				op |= xUnportableRead
 			case "CLOSE_WRITE":
-				op |= xUnportableCloseWrite
+				op |= UnportableCloseWrite
 			case "CLOSE_READ":
 				op |= xUnportableCloseRead
 			default:
@@ -897,7 +897,7 @@ loop:
 				case "read":
 					op |= xUnportableRead
 				case "close_write":
-					op |= xUnportableCloseWrite
+					op |= UnportableCloseWrite
 				case "close_read":
 					op |= xUnportableCloseRead
 				}

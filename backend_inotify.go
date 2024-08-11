@@ -14,8 +14,9 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/fsnotify/fsnotify/internal"
 	"golang.org/x/sys/unix"
+
+	"github.com/fsnotify/fsnotify/internal"
 )
 
 type inotify struct {
@@ -318,7 +319,7 @@ func (w *inotify) add(path string, with withOpts, recurse bool) error {
 	if with.op.Has(xUnportableRead) {
 		flags |= unix.IN_ACCESS
 	}
-	if with.op.Has(xUnportableCloseWrite) {
+	if with.op.Has(UnportableCloseWrite) {
 		flags |= unix.IN_CLOSE_WRITE
 	}
 	if with.op.Has(xUnportableCloseRead) {
@@ -598,7 +599,7 @@ func (w *inotify) newEvent(name string, mask, cookie uint32) Event {
 		e.Op |= xUnportableRead
 	}
 	if mask&unix.IN_CLOSE_WRITE == unix.IN_CLOSE_WRITE {
-		e.Op |= xUnportableCloseWrite
+		e.Op |= UnportableCloseWrite
 	}
 	if mask&unix.IN_CLOSE_NOWRITE == unix.IN_CLOSE_NOWRITE {
 		e.Op |= xUnportableCloseRead
